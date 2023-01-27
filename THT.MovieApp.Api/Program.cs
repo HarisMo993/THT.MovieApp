@@ -1,3 +1,5 @@
+using THT.MovieApp.IoC;
+
 namespace THT.MovieApp.Api
 {
     public class Program
@@ -7,6 +9,7 @@ namespace THT.MovieApp.Api
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.ConfigureIoCService(builder.Configuration);
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
