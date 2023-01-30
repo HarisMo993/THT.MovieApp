@@ -18,7 +18,6 @@ namespace THT.MovieApp.Data.Migrations
                     Name = table.Column<string>(type: "nvarchar(120)", maxLength: 120, nullable: false),
                     DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Biography = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Picture = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Cost = table.Column<double>(type: "float", nullable: false),
                     Accept_Reject = table.Column<bool>(type: "bit", nullable: true)
                 },
@@ -35,8 +34,7 @@ namespace THT.MovieApp.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(120)", maxLength: 120, nullable: false),
                     DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Biography = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Picture = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Biography = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -67,7 +65,6 @@ namespace THT.MovieApp.Data.Migrations
                     Trailer = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     InTheaters = table.Column<bool>(type: "bit", nullable: false),
                     ReleaseDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Poster = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Budget = table.Column<double>(type: "float", nullable: false),
                     DirectorId = table.Column<int>(type: "int", nullable: false)
                 },

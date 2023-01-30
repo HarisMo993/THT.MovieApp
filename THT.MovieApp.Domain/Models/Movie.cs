@@ -17,12 +17,11 @@ namespace THT.MovieApp.Domain.Models
         public string Trailer { get; set; }
         public bool InTheaters { get; set; }
         public DateTime ReleaseDate { get; set; }
-        public string Poster { get; set; }
         public double Budget { get; set; }
         public int DirectorId { get; set; }
         public Director Director { get; set; }
 
-        public IList<MoviesGenres> MoviesGenres { get; set; }
-        public IList<MoviesActors> MoviesActors { get; set; }
+        public virtual IList<MoviesGenres> MoviesGenres { get; set; }
+        public virtual IList<MoviesActors> MoviesActors { get; set; }
     }
 }

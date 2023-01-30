@@ -1,3 +1,7 @@
+using Microsoft.OpenApi.Models;
+using Newtonsoft.Json.Serialization;
+using Newtonsoft.Json;
+using THT.MovieApp.Domain.Helpers;
 using THT.MovieApp.IoC;
 
 namespace THT.MovieApp.Api
@@ -11,10 +15,18 @@ namespace THT.MovieApp.Api
             // Add services to the container.
             builder.Services.ConfigureIoCService(builder.Configuration);
 
-            builder.Services.AddControllers();
+            builder.Services.AddControllers().AddNewtonsoftJson(options =>
+            {
+                // Use the default property (Pascal) casing
+                options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            });
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            builder.Services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "MoviesAPI", Version = "v1" });
+            });
 
             var app = builder.Build();
 

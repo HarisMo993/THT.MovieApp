@@ -21,16 +21,24 @@ namespace THT.MovieApp.Data.Services
             _context = context;
         }
 
-        public IActorRepository ActorRepository =>
+        public ApplicationDbContext Context
+        {
+            get
+            {
+                return _context;
+            }
+        }
+
+        public IActorRepository Actors =>
             _actorRepository ??= new ActorRepository(_context);
 
-        public IDirectorRepository DirectorRepository =>
+        public IDirectorRepository Directors =>
             _directorRepository ??= new DirectorRepository(_context);
 
-        public IGenreRepository GenreRepository =>
+        public IGenreRepository Genres =>
             _genreRepository ??= new GenreRepository(_context);
 
-        public IMovieRepository MovieRepository =>
+        public IMovieRepository Movies =>
             _movieRepository ??= new MovieRepository(_context);
 
         public void Dispose()

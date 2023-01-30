@@ -48,10 +48,6 @@ namespace THT.MovieApp.Data.Migrations
                         .HasMaxLength(120)
                         .HasColumnType("nvarchar(120)");
 
-                    b.Property<string>("Picture")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
                     b.ToTable("Actors");
@@ -76,10 +72,6 @@ namespace THT.MovieApp.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(120)
                         .HasColumnType("nvarchar(120)");
-
-                    b.Property<string>("Picture")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -120,10 +112,6 @@ namespace THT.MovieApp.Data.Migrations
 
                     b.Property<bool>("InTheaters")
                         .HasColumnType("bit");
-
-                    b.Property<string>("Poster")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ReleaseDate")
                         .HasColumnType("datetime2");
@@ -189,7 +177,7 @@ namespace THT.MovieApp.Data.Migrations
             modelBuilder.Entity("THT.MovieApp.Domain.Models.Movie", b =>
                 {
                     b.HasOne("THT.MovieApp.Domain.Models.Director", "Director")
-                        .WithMany()
+                        .WithMany("Movies")
                         .HasForeignKey("DirectorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -233,6 +221,11 @@ namespace THT.MovieApp.Data.Migrations
                     b.Navigation("Genre");
 
                     b.Navigation("Movie");
+                });
+
+            modelBuilder.Entity("THT.MovieApp.Domain.Models.Director", b =>
+                {
+                    b.Navigation("Movies");
                 });
 
             modelBuilder.Entity("THT.MovieApp.Domain.Models.Movie", b =>

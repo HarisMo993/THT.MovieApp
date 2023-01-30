@@ -7,19 +7,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.13" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.13">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\THT.MovieApp.IoC\THT.MovieApp.IoC.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\THT.MovieApp.IoC\THT.MovieApp.IoC.csproj" />
+    <Folder Include="wwwroot\actors\" />
+    <Folder Include="wwwroot\directors\" />
+    <Folder Include="wwwroot\movies\" />
   </ItemGroup>
 
 </Project>

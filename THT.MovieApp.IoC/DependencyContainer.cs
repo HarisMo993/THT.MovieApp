@@ -1,16 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using THT.MovieApp.Application.Profiles;
 using THT.MovieApp.Data.Context;
 using THT.MovieApp.Data.Interfaces;
 using THT.MovieApp.Data.Interfaces.Generic;
 using THT.MovieApp.Data.Services;
 using THT.MovieApp.Data.Services.Generic;
+using THT.MovieApp.Domain.Helpers;
 
 namespace THT.MovieApp.IoC
 {
@@ -29,6 +26,12 @@ namespace THT.MovieApp.IoC
             services.AddScoped<IDirectorRepository, DirectorRepository>();
             services.AddScoped<IGenreRepository, GenreRepository>();
             services.AddScoped<IMovieRepository, MovieRepository>();
+
+            services.AddAutoMapper(typeof(MappingProfile));
+
+            services.AddScoped<IFileStorageService, FileStorageService>();
+
+            services.AddHttpContextAccessor();
 
             return services;
         }
