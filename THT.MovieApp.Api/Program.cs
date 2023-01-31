@@ -28,6 +28,16 @@ namespace THT.MovieApp.Api
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MoviesAPI", Version = "v1" });
             });
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(b =>
+                {
+                    var frontendURL = builder.Configuration.GetValue<string>("frontend_url");
+
+                    b.WithOrigins(frontendURL).AllowAnyMethod().AllowAnyHeader();
+                });
+            });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

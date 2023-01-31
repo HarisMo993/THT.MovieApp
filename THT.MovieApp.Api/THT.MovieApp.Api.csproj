@@ -21,10 +21,4 @@
     <ProjectReference Include="..\THT.MovieApp.IoC\THT.MovieApp.IoC.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\actors\" />
-    <Folder Include="wwwroot\directors\" />
-    <Folder Include="wwwroot\movies\" />
-  </ItemGroup>
-
 </Project>
