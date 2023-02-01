@@ -27,11 +27,6 @@ export class FormMovieComponent implements OnInit {
   @Input()
   selectedGenres: multipleSelectorModel[] = [];
 
-  @Input()
-  nonSelectedMovieTheaters: multipleSelectorModel[] = [];
-
-  @Input()
-  selectedMovieTheaters: multipleSelectorModel[] = [];
 
   @Input()
   selectedActors: actorsMovieDTO[]= [];
@@ -45,19 +40,13 @@ export class FormMovieComponent implements OnInit {
       inTheaters: false,
       trailer: '',
       releaseDate: '',
-      poster: '',
       genresIds: '',
-      movieTheatersIds: '',
       actors: ''
     });
 
     if (this.model !== undefined){
       this.form.patchValue(this.model);
     }
-  }
-
-  onImageSelected(file: File){
-    this.form.get('poster').setValue(file);
   }
 
   changeMarkdown(content: string){
@@ -67,10 +56,7 @@ export class FormMovieComponent implements OnInit {
   saveChanges(){
     const genresIds = this.selectedGenres.map(value => value.key);
     this.form.get('genresIds').setValue(genresIds);
-
-    const movieTheatersIds = this.selectedMovieTheaters.map(value => value.key);
-    this.form.get('movieTheatersIds').setValue(movieTheatersIds);
-
+    
     const actors = this.selectedActors.map(val => {
       return {id: val.id, character: val.character}
     });

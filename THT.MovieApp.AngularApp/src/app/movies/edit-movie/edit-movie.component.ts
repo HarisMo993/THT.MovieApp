@@ -20,13 +20,11 @@ export class EditMovieComponent implements OnInit {
 
   selectedGenres: multipleSelectorModel[];
   nonSelectedGenres: multipleSelectorModel[];
-  selectedMovieTheaters: multipleSelectorModel[];
-  nonSelectedMovieTheaters: multipleSelectorModel[];
   selectedActors: actorsMovieDTO[];
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
-      this.moviesService.putGet(params.id).subscribe(putGetDTO => {
+      this.moviesService.putGet(params['id']).subscribe(putGetDTO => {
         this.model = putGetDTO.movie;
 
         this.selectedGenres = putGetDTO.selectedGenres.map(genre => {
@@ -35,14 +33,6 @@ export class EditMovieComponent implements OnInit {
 
         this.nonSelectedGenres = putGetDTO.nonSelectedGenres.map(genre => {
           return <multipleSelectorModel>{key: genre.id, value: genre.name}
-        });
-  
-        this.selectedMovieTheaters = putGetDTO.selectedMovieTheaters.map(movieTheater => {
-          return <multipleSelectorModel>{key: movieTheater.id, value: movieTheater.name}
-        });
-
-        this.nonSelectedMovieTheaters = putGetDTO.nonSelectedMovieTheaters.map(movieTheater => {
-          return <multipleSelectorModel>{key: movieTheater.id, value: movieTheater.name}
         });
 
         this.selectedActors = putGetDTO.actors;

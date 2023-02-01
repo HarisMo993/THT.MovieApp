@@ -5,7 +5,6 @@ import { genreDTO } from 'src/app/genres/genres.model';
 import { GenresService } from 'src/app/genres/genres.service';
 import { movieDTO } from '../movies.model';
 import { MoviesService } from '../movies.service';
-import {Location} from '@angular/common'
 import { ActivatedRoute } from '@angular/router';
 import { PageEvent } from '@angular/material/paginator';
 
@@ -19,7 +18,6 @@ export class MovieFilterComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
     private moviesService: MoviesService,
     private genresService: GenresService,
-    private location: Location,
     private activatedRoute: ActivatedRoute) { }
 
   form: FormGroup;
@@ -56,7 +54,7 @@ export class MovieFilterComponent implements OnInit {
 
     })
 
-   
+
 
   }
 
@@ -73,29 +71,7 @@ export class MovieFilterComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe(params => {
       var obj: any = {};
 
-      if (params.title){
-        obj.title = params.title;
-      }
 
-      if (params.genreId){
-        obj.genreId = Number(params.genreId);
-      }
-
-      if (params.upcomingReleases){
-        obj.upcomingReleases = params.upcomingReleases
-      }
-
-      if (params.inTheaters){
-        obj.inTheaters = params.inTheaters;
-      }
-
-      if (params.page){
-        this.currentPage = params.page;
-      }
-
-      if (params.recordsPerPage){
-        this.recordsPerPage = params.recordsPerPage;
-      }
 
       this.form.patchValue(obj);
     });
@@ -114,18 +90,7 @@ export class MovieFilterComponent implements OnInit {
       queryStrings.push(`genreId=${formValues.genreId}`);
     }
 
-    if (formValues.upcomingReleases){
-      queryStrings.push(`upcomingReleases=${formValues.upcomingReleases}`);
-    }
 
-    if (formValues.inTheaters){
-      queryStrings.push(`inTheaters=${formValues.inTheaters}`);
-    }
-
-    queryStrings.push(`page=${this.currentPage}`);
-    queryStrings.push(`recordsPerPage=${this.recordsPerPage}`);
-
-    this.location.replaceState('movies/filter', queryStrings.join('&'));
   }
 
   paginatorUpdate(event: PageEvent){
